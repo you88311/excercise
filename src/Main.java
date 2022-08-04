@@ -29,7 +29,6 @@ public class Main {
                 for (int k = 0; k < 4; k++) {
                     int ny = cur[0] + dy[k];
                     int nx = cur[1] + dx[k];
-
                     if (ny < 0 || nx < 0 || ny >= N || nx >= M || tomato[ny][nx] != 0)
                         continue;
 
