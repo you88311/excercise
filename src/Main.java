@@ -40,6 +40,5 @@ public class Main {
             days++;
         }
         System.out.println(cnt == 0 ? days : -1);
-
     }
 }
