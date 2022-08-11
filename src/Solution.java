@@ -1,22 +1,25 @@
 import java.util.*;
 
 public class Solution {
-    public String readVertically(String[] arr) {
-        // TODO:
-        StringBuilder sb = new StringBuilder();
-        int[] strLength = new int[arr.length];
-        int maxLength = 0;
-        for(int i = 0 ; i < arr.length; i++){
-            strLength[i] = arr[i].length();
-            maxLength = Math.max(maxLength, strLength[i]);
-        }
 
-        for(int i = 0; i < maxLength ; i++){
-            for(int j = 0; j < arr.length; j++){
-                if(i < strLength[j])
-                    sb.append(arr[j].charAt(i));
-            }
-        }
-        return sb.toString();
+//
+//    scanner
+//    bufferedReader로 R,C 받고
+//    String[][] maze = new int[R][C];
+//
+//    for(i = ~ r)
+//    String[i] = readline()
+//
+//    int escapeTime = 0;
+//    while(J.queue is not empty)
+    //    escapeTime ++;
+    //    F => DFS하며 해당 위치를 #으로 변경
+    //    J => DFS
+    //    if(J의 좌표에 0이 있거나 R-1 or C-1이 있다면) return escapeTime
+
+//  return "
+
+    public static void main(String[] args) {
+
     }
 }
