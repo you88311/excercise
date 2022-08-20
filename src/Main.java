@@ -4,6 +4,7 @@ import java.io.InputStreamReader;
 import java.util.LinkedList;
 import java.util.Queue;
 
+
 public class Main {
     static private Integer[] BFS(Queue<Integer[]> queue, Integer[] cur, int[][] maze, int[][] fire, int R, int C, boolean isFire) {
         cur = queue.poll();
