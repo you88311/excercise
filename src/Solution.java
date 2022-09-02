@@ -56,7 +56,6 @@ public class Solution {
         String[] orders = {"ABCFG", "AC", "CDE", "ACDE", "BCFG", "ACDEH"};
         int[] course = {2, 3, 4};
         Solution sol = new Solution();
-        System.out.println("진행중");
         System.out.println(Arrays.toString(sol.solution(orders, course)));
     }
 }
