@@ -43,7 +43,6 @@ public class Solution {
             hashMap.put(comb, hashMap.getOrDefault(comb, 0) + 1);
             if (max <= hashMap.get(comb)) {
                 max = hashMap.get(comb);
-//                System.out.println(max);
             }
         }
 
