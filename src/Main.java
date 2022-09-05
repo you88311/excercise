@@ -13,13 +13,13 @@ public class Main {
         boolean visited[] = new boolean[n + 1];
         int com[] = new int[m + 1];
 
-        combination(bw, com, 0, n, m);
+        combination(bw, visited, com, 0, n, m);
 
         bw.flush();
         bw.close();
     }
 
-    static void combination(BufferedWriter bw, int com[], int k, int n, int m) throws IOException {
+    static void combination(BufferedWriter bw, boolean visited[], int com[], int k, int n, int m) throws IOException {
         if (k == m) {
             for (int i = 0; i < m; i++) {
                 bw.write(com[i] + " ");
@@ -30,9 +30,9 @@ public class Main {
         }
 
         for (int i = 1; i < n + 1; i++) {
+            if(k-1 >= 0 && com[k-1] > i) continue;
             com[k] = i;
-            combination(bw, com, k + 1, n, m);
-            //com[k] = 0 이런거 필요 없다. 어차피 덮어 씌워지기 때문
+            combination(bw, visited, com, k + 1, n, m);
         }
     }
 }
