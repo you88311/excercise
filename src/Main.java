@@ -5,47 +5,34 @@ public class Main {
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         StringTokenizer st = new StringTokenizer(br.readLine());
+        BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
 
         int n = Integer.parseInt(st.nextToken());
         int m = Integer.parseInt(st.nextToken());
+
         boolean visited[] = new boolean[n + 1];
-        LinkedList<Integer>[] graph = new LinkedList[n + 1];
-        for (int i = 0; i < n+1; i++) {
-            graph[i] = new LinkedList<>();
-        }
+        int com[] = new int[m + 1];
 
-        Integer u, v;
-        int comCnt = 0;
-        Queue<Integer> queue = new LinkedList<>();
+        combination(bw, com, 0, n, m);
 
-        for (int i = 0; i < m; i++) {
-            st = new StringTokenizer(br.readLine());
-            u = Integer.valueOf(st.nextToken());
-            v = Integer.valueOf(st.nextToken());
-            //연결리스트로 그래프 저장
-            graph[u].add(v);
-            graph[v].add(u);
-        }
+        bw.flush();
+        bw.close();
+    }
 
-        for (int i = 1; i < n+1; i++) {
-            if(visited[i]) continue;
-
-            queue.add(i);
-            visited[i] = true;
-            //bfs
-            while(!queue.isEmpty()){
-                int cur = queue.poll();
-
-                for (int adj : graph[cur]) {
-                    if(!visited[adj]){
-                        queue.add(adj);
-                        visited[adj] = true;
-                    }
-                }
+    static void combination(BufferedWriter bw, int com[], int k, int n, int m) throws IOException {
+        if (k == m) {
+            for (int i = 0; i < m; i++) {
+                bw.write(com[i] + " ");
             }
-            comCnt++;
+            bw.write("\n");
+
+            return;
         }
 
-        System.out.println(comCnt);
+        for (int i = 1; i < n + 1; i++) {
+            com[k] = i;
+            combination(bw, com, k + 1, n, m);
+            //com[k] = 0 이런거 필요 없다. 어차피 덮어 씌워지기 때문
+        }
     }
 }
