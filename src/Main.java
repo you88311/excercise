@@ -2,37 +2,39 @@ import java.io.*;
 import java.util.*;
 
 public class Main {
+
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-        StringTokenizer st = new StringTokenizer(br.readLine());
         BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
 
+        StringTokenizer st = new StringTokenizer(br.readLine());
+
         int n = Integer.parseInt(st.nextToken());
-        int m = Integer.parseInt(st.nextToken());
+        int[] testCase = new int[n];
+        int maxCase = 0;
 
-        boolean visited[] = new boolean[n + 1];
-        int com[] = new int[m + 1];
+        for(int i = 0; i < n ; i ++){
+            st = new StringTokenizer(br.readLine());
+            testCase[i] = Integer.parseInt(st.nextToken());
+            if(i == 0) maxCase = testCase[i];
+            else maxCase = (Math.max(maxCase, testCase[i]));
+        }
 
-        combination(bw, visited, com, 0, n, m);
+        int[] dp = new int[maxCase+1];
+        dp[1] = 1;
+        dp[2] = 2;
+        dp[3] = 4;
+        for(int i = 4; i <= maxCase; i++){
+            dp[i] = dp[i-1] + dp[i-2] + dp[i-3];
+        }
+
+        for(int test : testCase){
+            bw.append(String.valueOf(dp[test])).append("\n");
+        }
 
         bw.flush();
         bw.close();
-    }
 
-    static void combination(BufferedWriter bw, boolean visited[], int com[], int k, int n, int m) throws IOException {
-        if (k == m) {
-            for (int i = 0; i < m; i++) {
-                bw.write(com[i] + " ");
-            }
-            bw.write("\n");
-
-            return;
-        }
-
-        for (int i = 1; i < n + 1; i++) {
-            if(k-1 >= 0 && com[k-1] > i) continue;
-            com[k] = i;
-            combination(bw, visited, com, k + 1, n, m);
-        }
+        return;
     }
 }
