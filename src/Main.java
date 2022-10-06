@@ -1,39 +1,32 @@
-import java.io.*;
 import java.util.*;
+import java.io.*;
 
-public class Main {
-
+class Main {
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-        BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
+        String[] input = br.readLine().split(" ");
+        int m = Integer.parseInt(input[0]);
+        int n = Integer.parseInt(input[1]);
+        boolean isPrime[] = new boolean[n+1];
+        Arrays.fill(isPrime, true);
+        isPrime[0] = isPrime[1] = false;
 
-        StringTokenizer st = new StringTokenizer(br.readLine());
+        if(m == 1) m = 2;
 
-        int n = Integer.parseInt(st.nextToken());
-        int[] testCase = new int[n];
-        int maxCase = 0;
-
-        for(int i = 0; i < n ; i ++){
-            st = new StringTokenizer(br.readLine());
-            testCase[i] = Integer.parseInt(st.nextToken());
-            if(i == 0) maxCase = testCase[i];
-            else maxCase = (Math.max(maxCase, testCase[i]));
+        //소수 구하기
+        for (int i = 2; i*i <= n; i++) {
+            for (int j = i*i; j <= n; j+=i) {
+                isPrime[j] = false;
+            }
         }
 
-        int[] dp = new int[maxCase+1];
-        dp[1] = 1;
-        dp[2] = 2;
-        dp[3] = 4;
-        for(int i = 4; i <= maxCase; i++){
-            dp[i] = dp[i-1] + dp[i-2] + dp[i-3];
+        //소수 출력
+        for (int i = m; i < isPrime.length; i++) {
+            if(isPrime[i]) System.out.println(i);
         }
 
-        for(int test : testCase){
-            bw.append(String.valueOf(dp[test])).append("\n");
-        }
-
-        bw.flush();
-        bw.close();
+        char A = '0';
+        System.out.printf("%d", (int)A);
 
         return;
     }
